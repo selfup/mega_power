@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mega_power/utils"
+	"github.com/selfup/mega_power/utils"
 )
 
 func main() {
@@ -19,8 +19,8 @@ func main() {
 
 	utils.FetchAndWriteOrPass(MegaPATH, PowerPATH)
 
-	megaRecent := utils.LastEight(MegaPATH)
-	powerRecent := utils.LastEight(PowerPATH)
+	megaRecent := utils.Recent(MegaPATH)
+	powerRecent := utils.Recent(PowerPATH)
 
 	fmt.Println("MEGA")
 	fmt.Println(megaRecent)

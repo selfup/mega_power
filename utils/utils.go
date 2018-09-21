@@ -66,21 +66,29 @@ func writeCSV(path string, content string) bool {
 // if data already exists then nothing happens
 // if data does not exist data is fetched and then written to disk
 func FetchAndWriteOrPass(megaPath string, powerPath string) {
-	if !checkCSV(megaPath) && !checkCSV(powerPath) {
-		megaCSVResponse := getCSV(MegaURL)
-		powerCSVResponse := getCSV(PowerURL)
+	if os.Args[1] == "new" {
+		fetchAndWrite(megaPath, powerPath)
+	}
 
-		writeCSV(megaPath, megaCSVResponse)
-		writeCSV(powerPath, powerCSVResponse)
+	if !checkCSV(megaPath) && !checkCSV(powerPath) {
+		fetchAndWrite(megaPath, powerPath)
 	}
 }
 
-// LastEight takes in the file path and then grabs the last eight records
-func LastEight(path string) string {
+func fetchAndWrite(megaPath string, powerPath string) {
+	megaCSVResponse := getCSV(MegaURL)
+	powerCSVResponse := getCSV(PowerURL)
+
+	writeCSV(megaPath, megaCSVResponse)
+	writeCSV(powerPath, powerCSVResponse)
+}
+
+// Recent takes in the file path and then grabs the last eight records
+func Recent(path string) string {
 	csvStr := readCSV(path)
 	csvArr := strings.Split(csvStr, "\n")
 
-	lastEightArr := csvArr[len(csvArr)-9 : len(csvArr)-1]
+	recent := csvArr[len(csvArr)-30 : len(csvArr)-1]
 
-	return strings.Join(lastEightArr, "\n")
+	return strings.Join(recent, "\n")
 }
