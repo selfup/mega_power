@@ -6,7 +6,7 @@ MVP in ruby. Golang next for portability :tada:
 
 Example of latest 5 (now latest 8)
 
-![megapower](https://user-images.githubusercontent.com/9837366/45858838-e26bfb80-bd24-11e8-9d44-8e461e27547e.png)
+![megapower8](https://user-images.githubusercontent.com/9837366/45858881-1f37f280-bd25-11e8-8336-c6225260fe94.png)
 
 # Use
 
