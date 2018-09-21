@@ -65,26 +65,30 @@ func writeCSV(path string, content string) bool {
 	return true
 }
 
-func main() {
-	var megaCSVResponse string
-	var powerCSVResponse string
-
+func fetchAndWiteOrPass() {
 	if !checkCSV(MegaPATH) && !checkCSV(PowerPATH) {
-		megaCSVResponse = getCSV(MegaURL)
-		powerCSVResponse = getCSV(PowerURL)
+		megaCSVResponse := getCSV(MegaURL)
+		powerCSVResponse := getCSV(PowerURL)
 
 		writeCSV(MegaPATH, megaCSVResponse)
 		writeCSV(PowerPATH, powerCSVResponse)
 	}
+}
 
-	megaArr := strings.Split(readCSV(MegaPATH), "\n")
-	powerArr := strings.Split(readCSV(PowerPATH), "\n")
+func lastEight(path string) string {
+	csvStr := readCSV(path)
+	csvArr := strings.Split(csvStr, "\n")
 
-	megaLastEight := megaArr[len(megaArr)-9 : len(megaArr)-1]
-	powerLastEight := powerArr[len(powerArr)-9 : len(powerArr)-1]
+	lastEightArr := csvArr[len(csvArr)-9 : len(csvArr)-1]
 
-	megaRecent := strings.Join(megaLastEight, "\n")
-	powerRecent := strings.Join(powerLastEight[:], "\n")
+	return strings.Join(lastEightArr, "\n")
+}
+
+func main() {
+	fetchAndWiteOrPass()
+
+	megaRecent := lastEight(MegaPATH)
+	powerRecent := lastEight(PowerPATH)
 
 	fmt.Println("MEGA")
 	fmt.Println(megaRecent)
