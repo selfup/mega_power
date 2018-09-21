@@ -35,7 +35,7 @@ To get rid of these harmless files: `rm -rf ~/.mega_power.*` :pray:
 
 # Development
 
-If you want to work on this make sure you clone this into your `$GOPATH`.
+If you want to work on this make sure you clone this into your `$GOPATH`
 
 Otherwise imports will break :boom:
 
