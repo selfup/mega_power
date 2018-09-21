@@ -10,21 +10,25 @@ Example of latest 5 (now latest 8)
 
 # Use
 
-Pull in all data :smile:
+### Install deps
 
-Do this first :pray:
+`bundle install`
 
-```bash
-ruby main.rb new
-```
+### Then
 
-Now you can run `recent` without making api calls :rocket:
+1. Pull in all data :smile:
 
-Get the latest 8 results for each contest
+    ```bash
+    ruby main.rb new
+    ```
 
-```bash
-ruby main.rb recent
-```
+    Now you can run `recent` without making api calls :rocket:
+
+2. Get the latest 8 results for each contest
+
+    ```bash
+    ruby main.rb recent
+    ```
 
 # Be nice
 
