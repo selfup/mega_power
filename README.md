@@ -8,11 +8,12 @@ Example of latest 8
 
 # Use
 
-`go run main.go`
+```bash
+go get github.com/selfup/mega_power \
+  && go install github.com/selfup/mega_power
+```
 
-`go get github.com/selfup/mega_power && go install mega_power`
-
-`mega_power`
+Now globally: `mega_power`
 
 # Fair Warning
 
