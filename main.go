@@ -2,17 +2,21 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/mega_power/utils"
 )
 
-// paths for megamillions and powerball stuff
-const (
-	MegaPATH  = "mega/data.csv"
-	PowerPATH = "power/data.csv"
-)
-
 func main() {
+	home := os.Getenv("USERPROFILE")
+
+	if home == "" {
+		home = os.Getenv("HOME")
+	}
+
+	MegaPATH := home + "/.mega_power.mega.data.csv"
+	PowerPATH := home + "/.mega_power.power.data.csv"
+
 	utils.FetchAndWriteOrPass(MegaPATH, PowerPATH)
 
 	megaRecent := utils.LastEight(MegaPATH)
