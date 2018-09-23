@@ -69,7 +69,7 @@ func writeCSV(path string, content string) bool {
 // if data already exists then nothing happens
 // if data does not exist data is fetched and then written to disk
 func FetchAndWriteOrPass(megaPath string, powerPath string) {
-	if os.Args[1] == "new" {
+	if len(os.Args) > 1 && os.Args[1] == "new" {
 		fetchAndWrite(megaPath, powerPath)
 	}
 
