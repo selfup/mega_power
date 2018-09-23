@@ -63,6 +63,9 @@ func writeCSV(path string, content string) bool {
 }
 
 // FetchAndWriteOrPass checks to see if data already exists
+// it also checks for the "new" os.Arg
+// if "new" os.Arg[1] - API calls are made to update lotto data
+// otherwise
 // if data already exists then nothing happens
 // if data does not exist data is fetched and then written to disk
 func FetchAndWriteOrPass(megaPath string, powerPath string) {
