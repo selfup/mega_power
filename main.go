@@ -8,9 +8,11 @@ import (
 )
 
 func main() {
+	// Check Windows HOME -> USERPROFILE
 	home := os.Getenv("USERPROFILE")
 
 	if home == "" {
+		// Otherwise get Linux/macOS (darwin) HOME
 		home = os.Getenv("HOME")
 	}
 
