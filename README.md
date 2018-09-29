@@ -113,3 +113,7 @@ You can even just check for one number on that draw date too:
 ./scripts/numbers.mega.sh 3 "01 02" | grep "09/21/2018"
 09/21/2018,01 02 11 52 64,09,04
 ```
+
+# TODO
+
+Work on cli ux
