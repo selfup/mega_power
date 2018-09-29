@@ -39,7 +39,7 @@ func Recent(path string) string {
 	csvStr := readCSV(path)
 	csvArr := strings.Split(csvStr, "\n")
 
-	recent := csvArr[len(csvArr)-30 : len(csvArr)-1]
+	recent := csvArr[len(csvArr)-8 : len(csvArr)-1]
 
 	return strings.Join(recent, "\n")
 }
