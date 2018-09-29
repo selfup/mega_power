@@ -59,11 +59,11 @@ _cd into this repo_
 
 `./scripts/fetch.data.sh`
 
-### Check last [n] drawings got Mega
+### Check last [n] drawings for Mega
 
 `./scripts/mega.last.sh 3` --> returns last 3 drawings
 
-### Check last [n] drawings got Power
+### Check last [n] drawings for Power
 
 `./scripts/power.last.sh 3` --> returns last 3 drawings
 
