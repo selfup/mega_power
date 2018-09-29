@@ -8,11 +8,41 @@ import (
 	"strings"
 )
 
-// urls for megamillions and powerball stuff
+// nyc gov [powerball and megamillions] csv api endpoints
 const (
 	MegaURL  = "https://data.ny.gov/api/views/5xaw-6ayf/rows.csv?accessType=DOWNLOAD"
 	PowerURL = "https://data.ny.gov/api/views/d6yy-54nr/rows.csv?accessType=DOWNLOAD"
 )
+
+// CheckCliArgs checks to see if data already exists
+// it also checks for the "new" os.Arg
+// if "new" os.Arg[1] - API calls are made to update lotto data
+// otherwise
+// if data already exists then nothing happens
+// if data does not exist data is fetched and then written to disk
+func CheckCliArgs(megaPath string, powerPath string) {
+	cliArgs := len(os.Args) > 1
+
+	if cliArgs {
+		if os.Args[1] == "new" {
+			fetchAndWrite(megaPath, powerPath)
+		}
+	}
+
+	if !checkCSV(megaPath) && !checkCSV(powerPath) {
+		fetchAndWrite(megaPath, powerPath)
+	}
+}
+
+// Recent takes in the file path and then grabs the last eight records
+func Recent(path string) string {
+	csvStr := readCSV(path)
+	csvArr := strings.Split(csvStr, "\n")
+
+	recent := csvArr[len(csvArr)-30 : len(csvArr)-1]
+
+	return strings.Join(recent, "\n")
+}
 
 func check(e error) {
 	if e != nil {
@@ -62,36 +92,10 @@ func writeCSV(path string, content string) bool {
 	return true
 }
 
-// FetchAndWriteOrPass checks to see if data already exists
-// it also checks for the "new" os.Arg
-// if "new" os.Arg[1] - API calls are made to update lotto data
-// otherwise
-// if data already exists then nothing happens
-// if data does not exist data is fetched and then written to disk
-func FetchAndWriteOrPass(megaPath string, powerPath string) {
-	if len(os.Args) > 1 && os.Args[1] == "new" {
-		fetchAndWrite(megaPath, powerPath)
-	}
-
-	if !checkCSV(megaPath) && !checkCSV(powerPath) {
-		fetchAndWrite(megaPath, powerPath)
-	}
-}
-
 func fetchAndWrite(megaPath string, powerPath string) {
 	megaCSVResponse := getCSV(MegaURL)
 	powerCSVResponse := getCSV(PowerURL)
 
 	writeCSV(megaPath, megaCSVResponse)
 	writeCSV(powerPath, powerCSVResponse)
-}
-
-// Recent takes in the file path and then grabs the last eight records
-func Recent(path string) string {
-	csvStr := readCSV(path)
-	csvArr := strings.Split(csvStr, "\n")
-
-	recent := csvArr[len(csvArr)-30 : len(csvArr)-1]
-
-	return strings.Join(recent, "\n")
 }

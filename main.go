@@ -19,7 +19,7 @@ func main() {
 	MegaPATH := home + "/.mega_power.mega.data.csv"
 	PowerPATH := home + "/.mega_power.power.data.csv"
 
-	utils.FetchAndWriteOrPass(MegaPATH, PowerPATH)
+	utils.CheckCliArgs(MegaPATH, PowerPATH)
 
 	megaRecent := utils.Recent(MegaPATH)
 	powerRecent := utils.Recent(PowerPATH)
