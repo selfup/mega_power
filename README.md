@@ -4,7 +4,7 @@ Pull in the latest mega millions and powerball stuffs
 
 Example of latest 8
 
-![megapowergo](https://user-images.githubusercontent.com/9837366/45861000-d6d20200-bd2f-11e8-8637-9ba205645dc1.png)
+![new_mega_power_api](https://user-images.githubusercontent.com/9837366/51288802-6a0c0300-19c3-11e9-90c2-75734d4c4b39.PNG)
 
 # Use
 
@@ -17,7 +17,7 @@ Now globally: `mega_power`
 
 # Fair Warning
 
-Since files are being written, I have to write two dotfiles in your $HOME dir.
+Since files are being written, I have to write two dotfiles in your \$HOME dir.
 
 The nature of execs is that I have no idea where you are executing them :joy:
 
@@ -47,7 +47,7 @@ _building a binary release soon!_
 
 # Be nice
 
-Don't slam the api. I would just call `new` every few days. Keep the data fresh, api calls low :boat:   
+Don't slam the api. I would just call `new` every few days. Keep the data fresh, api calls low :boat:
 
 # But I Like Bash Scripts!
 
