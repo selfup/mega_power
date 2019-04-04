@@ -1,5 +1,9 @@
 # MEGA POWER
 
+- Golang
+- Bash
+- Powershell
+
 Pull in the latest mega millions and powerball stuffs
 
 Example of latest 8
@@ -114,6 +118,28 @@ You can even just check for one number on that draw date too:
 09/21/2018,01 02 11 52 64,09,04
 ```
 
-# TODO
+### PowerShell
 
-Work on cli ux
+Basic use:
+
+```powershell
+.\powershell\fetch.ps1
+```
+
+If you get a permission error, try:
+
+```powershell
+powershell -ExecutionPolicy ByPass -File .\powershell\fetch.ps1
+```
+
+![image](https://user-images.githubusercontent.com/9837366/55524880-7283e980-5654-11e9-8229-6d6fbfe41dfd.png)
+
+#### Update Data Flag
+
+Full prompt when updating existing csv data:
+
+```powershell
+powershell -ExecutionPolicy ByPass -File .\powershell\fetch.ps1 --update
+```
+
+![image](https://user-images.githubusercontent.com/9837366/55524651-add1e880-5653-11e9-84a6-a474ffab4f17.png)
