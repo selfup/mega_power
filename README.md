@@ -6,15 +6,16 @@
 
 [Powershell](#powershell)
 
-Fetches Powerball and Megamillions CSV data from the NewYork Gov Website. `https://data.ny.gov/api/views/:id/rows.csv?accessType=DOWNLOAD`
+Fetches Powerball and Megamillions CSV data from the NewYork Gov Website.
+`https://data.ny.gov/api/views/:id/rows.csv?accessType=DOWNLOAD`
 
-If data is already local, just reads the existing files.
+If data is already local, it just reads the existing files.
 
-If you pass `new` to the go program it fetches new data.
+If you pass `new` to the `go` program it fetches new data.
 
-If you pass `--update` or `-u` to the powershell program it fetches new data.
+If you pass `--update` or `-u` to the `powershell` program it fetches new data.
 
-If you use bash, you will update manually. But it's quite simple :smile:
+If you use `bash`, you will update manually. But it's quite simple :smile:
 
 Example of latest 8
 
@@ -22,7 +23,7 @@ Example of latest 8
 
 ## Fair Warning
 
-Since files are being written, I write two dotfiles in your HOME/USERPROFILE directory:
+Since files are being written, I write two dotfiles in your `HOME/USERPROFILE` directory:
 
 - macOS/Linux: `$HOME`
 - Windows: `%USERPROFILE%`
@@ -46,7 +47,9 @@ To update the files (new drawing) just pass `new`: `mega_power new` or `go run m
 
 ## Development
 
-**Go** If you want to work on this make sure you clone this into your `$GOPATH`
+**Go**
+
+If you want to work on this make sure you clone this into your `$GOPATH`
 
 Otherwise imports will break :boom:
 
@@ -59,6 +62,8 @@ Just regular git flow, anywhere on the machine should be fine :smile:
 _cd into this repo_
 
 #### Fetch lottery data for Mega and Power
+
+_If you recently ran the `go` or `powershell` scripts you can skip this step unless you need to update for a more recent drawing_
 
 `./scripts/fetch.data.sh`
 
