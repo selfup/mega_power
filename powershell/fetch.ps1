@@ -10,22 +10,22 @@ $USERPROFILE = ""
 $ROOTPATH = ""
 
 try { $HOMEPATH = (Get-Item env:HOME).Value }
-catch { Write-Output "CANNOT FIND HOME ENV " }
+catch { Write-Host "CANNOT FIND HOME ENV" -ForegroundColor Yellow }
 
 try { $USERPROFILE = (Get-Item env:USERPROFILE).Value }
-catch { Write-Output "CANNOT FIND USERPROFILE ENV" }
+catch { Write-Host "CANNOT FIND USERPROFILE ENV" -ForegroundColor Yellow }
 
 if (!$HOMEPATH -And !$USERPROFILE) {
-    Write-Output "COULD NOT FIND ROOTPATH PATHS EXITING..."
+    Write-Host "COULD NOT FIND ROOTPATH PATHS EXITING..." -ForegroundColor Red
     exit
 }
 
 if ($HOMEPATH -eq "") {
-    Write-Output "FOUND USERPROFILE PATH SETTING ROOTPATH TO $HOMEPATH"
+    Write-Host "FOUND USERPROFILE PATH SETTING ROOTPATH TO $HOMEPATH" -ForegroundColor Blue
     $ROOTPATH = $USERPROFILE 
 }
 else {
-    Write-Output "FOUND HOME PATH SETTING ROOTPATH TO $HOMEPATH"
+    Write-Host "FOUND HOME PATH SETTING ROOTPATH TO $HOMEPATH" -ForegroundColor Blue
     $ROOTPATH = $HOMEPATH
 }
 
@@ -33,7 +33,7 @@ $MegaPath = "$ROOTPATH/.mega_power.mega.data.csv"
 $PowerPath = "$ROOTPATH/.mega_power.power.data.csv"
 
 $PowerResponse.Content > $PowerPath
-Write-Output "Powerball CSV written to $PowerPath"
+Write-Host "Powerball CSV written to $PowerPath" -ForegroundColor Green
 
 $MegaResponse.Content > $MegaPath
-Write-Output "MegaMillions CSV written to $MegaPath"
+Write-Host "MegaMillions CSV written to $MegaPath" -ForegroundColor Green
