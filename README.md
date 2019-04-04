@@ -1,8 +1,10 @@
 # MEGA POWER
 
-- Golang
-- Bash
-- Powershell
+[Go](#go)
+
+[Bash](#bash)
+
+[Powershell](#powershell)
 
 Pull in the latest mega millions and powerball stuffs
 
@@ -10,7 +12,20 @@ Example of latest 8
 
 ![new_mega_power_api](https://user-images.githubusercontent.com/9837366/51288802-6a0c0300-19c3-11e9-90c2-75734d4c4b39.PNG)
 
-# Use
+## Fair Warning
+
+Since files are being written, I have to write two dotfiles in your:
+
+macOS/Linux: `$HOME`
+Windows: `%USERPROFILE%`
+
+To get rid of these harmless files: `rm ~/.mega_power.*` (bash/pwsh) :pray:
+
+## Be nice
+
+Don't slam the api. I would just call `new` (go) or `--update` (pwsh) every few days. Keep the data fresh, api calls low :boat:
+
+## Go
 
 ```bash
 go get github.com/selfup/mega_power \
@@ -19,26 +34,7 @@ go get github.com/selfup/mega_power \
 
 Now globally: `mega_power`
 
-# Fair Warning
-
-Since files are being written, I have to write two dotfiles in your \$HOME dir.
-
-The nature of execs is that I have no idea where you are executing them :joy:
-
-```go
-home := os.Getenv("USERPROFILE")
-
-if home == "" {
-    home = os.Getenv("HOME")
-}
-
-MegaPATH := home + "/.mega_power.mega.data.csv"
-PowerPATH := home + "/.mega_power.power.data.csv"
-```
-
-To get rid of these harmless files: `rm -rf ~/.mega_power.*` :pray:
-
-# Development
+## Development
 
 If you want to work on this make sure you clone this into your `$GOPATH`
 
@@ -49,29 +45,23 @@ _building a binary release soon!_
 1. It will fetch the data if it's not there.
 1. Once the data is there, it will return the last 8 results of each lottery.
 
-# Be nice
-
-Don't slam the api. I would just call `new` every few days. Keep the data fresh, api calls low :boat:
-
-# But I Like Bash Scripts!
-
-Me too :smile:
+## Bash
 
 _cd into this repo_
 
-### Fetch lottery data for Mega and Power
+#### Fetch lottery data for Mega and Power
 
 `./scripts/fetch.data.sh`
 
-### Check last [n] drawings for Mega
+#### Check last [n] drawings for Mega
 
 `./scripts/mega.last.sh 3` --> returns last 3 drawings
 
-### Check last [n] drawings for Power
+#### Check last [n] drawings for Power
 
 `./scripts/power.last.sh 3` --> returns last 3 drawings
 
-### Check by date of drawing
+#### Check by date of drawing
 
 ```bash
 ./scripts/date.mega.sh "09/21/2018"
@@ -88,7 +78,7 @@ Example:
 09/21/2018,01 02 11 52 64,09,04
 ```
 
-### Check to see if numbers match
+#### Check to see if numbers match
 
 Use a last scripts for your lottery of choice
 
@@ -118,7 +108,7 @@ You can even just check for one number on that draw date too:
 09/21/2018,01 02 11 52 64,09,04
 ```
 
-### PowerShell
+## PowerShell
 
 Basic use:
 
