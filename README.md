@@ -6,8 +6,6 @@
 
 [Powershell](#powershell)
 
-Pull in the latest mega millions and powerball stuffs
-
 Example of latest 8
 
 ![new_mega_power_api](https://user-images.githubusercontent.com/9837366/51288802-6a0c0300-19c3-11e9-90c2-75734d4c4b39.PNG)
@@ -109,6 +107,8 @@ You can even just check for one number on that draw date too:
 ```
 
 ## PowerShell
+
+_cd into this repo_
 
 Basic use:
 
