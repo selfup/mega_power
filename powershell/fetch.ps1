@@ -29,7 +29,10 @@ else {
 $MegaPath = "$ROOTPATH/.mega_power.mega.data.csv"
 $PowerPath = "$ROOTPATH/.mega_power.power.data.csv"
 
-if ((Get-Content $MegaPath) -And (Get-Content $PowerPath)) {
+$MegaFileThere = [System.IO.File]::Exists($MegaPath)
+$PowerFileThere = [System.IO.File]::Exists($PowerPath)
+
+if (($MegaFileThere) -And ($PowerFileThere)) {
     if (($args[0] -eq "--update") -Or ($args[0] -eq "-u")) {
         Write-Host "FOUND FILES BUT TOLD TO UPDATE with either -u or --update." -ForegroundColor Magenta
         Write-Host "FORCING AN UPDATE!" -ForegroundColor Magenta
@@ -50,6 +53,7 @@ try {
 }
 catch { 
     Write-Host "FAILED TO FETCH POWERBALL DATA, BREAKING OUT..." - -ForegroundColor Red
+    Break
 }
 
 try {
@@ -58,6 +62,7 @@ try {
 }
 catch {
     Write-Host "FAILED TO FETCH MEGABALL DATA, BREAKING OUT..." - -ForegroundColor Red
+    Break
 }
 
 $PowerResponse.Content > $PowerPath
