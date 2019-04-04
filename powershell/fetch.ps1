@@ -2,9 +2,6 @@
 
 $ErrorActionPreference = 'Stop'
 
-$PowerResponse = Invoke-WebRequest 'https://data.ny.gov/api/views/5xaw-6ayf/rows.csv?accessType=DOWNLOAD' -Method 'GET'
-$MegaResponse = Invoke-WebRequest 'https://data.ny.gov/api/views/d6yy-54nr/rows.csv?accessType=DOWNLOAD' -Method 'GET'
-
 $HOMEPATH = ""
 $USERPROFILE = ""
 $ROOTPATH = ""
@@ -15,25 +12,56 @@ catch { Write-Host "CANNOT FIND HOME ENV" -ForegroundColor Yellow }
 try { $USERPROFILE = (Get-Item env:USERPROFILE).Value }
 catch { Write-Host "CANNOT FIND USERPROFILE ENV" -ForegroundColor Yellow }
 
-if (!$HOMEPATH -And !$USERPROFILE) {
-    Write-Host "COULD NOT FIND ROOTPATH PATHS EXITING..." -ForegroundColor Red
-    exit
+if (($HOMEPATH -eq "") -And ($USERPROFILE -eq "")) {
+    Write-Host "COULD NOT FIND PATHS - BREAKING OUT..." -ForegroundColor Red
+    Break
 }
 
 if ($HOMEPATH -eq "") {
-    Write-Host "FOUND USERPROFILE PATH SETTING ROOTPATH TO $HOMEPATH" -ForegroundColor Blue
+    Write-Host "FOUND USERPROFILE" -ForegroundColor Blue
     $ROOTPATH = $USERPROFILE 
 }
 else {
-    Write-Host "FOUND HOME PATH SETTING ROOTPATH TO $HOMEPATH" -ForegroundColor Blue
+    Write-Host "FOUND HOME" -ForegroundColor Blue
     $ROOTPATH = $HOMEPATH
 }
 
 $MegaPath = "$ROOTPATH/.mega_power.mega.data.csv"
 $PowerPath = "$ROOTPATH/.mega_power.power.data.csv"
 
+if ((Get-Content $MegaPath) -And (Get-Content $PowerPath)) {
+    if (($args[0] -eq "--update") -Or ($args[0] -eq "-u")) {
+        Write-Host "FOUND FILES BUT TOLD TO UPDATE with either -u or --update." -ForegroundColor Magenta
+        Write-Host "FORCING AN UPDATE!" -ForegroundColor Magenta
+    }
+    else {
+        Write-Host "FILES ALREADY EXIST. PLEASE USE --update TO UPDATE. BREAKING OUT..." -ForegroundColor Red
+        Break
+    }
+
+}
+
+$PowerBallCsvUrl = 'https://data.ny.gov/api/views/5xaw-6ayf/rows.csv?accessType=DOWNLOAD'
+$MegaBallCsvUrl = 'https://data.ny.gov/api/views/d6yy-54nr/rows.csv?accessType=DOWNLOAD'
+
+try {
+    $PowerResponse = Invoke-WebRequest $PowerBallCsvUrl -Method 'GET'
+    Write-Host "FETCHED POWERBALL CSV DATA" -ForegroundColor Green
+}
+catch { 
+    Write-Host "FAILED TO FETCH POWERBALL DATA, BREAKING OUT..." - -ForegroundColor Red
+}
+
+try {
+    $MegaResponse = Invoke-WebRequest $MegaBallCsvUrl -Method 'GET'
+    Write-Host "FETCHED MEGABALL CSV DATA" -ForegroundColor Green
+}
+catch {
+    Write-Host "FAILED TO FETCH MEGABALL DATA, BREAKING OUT..." - -ForegroundColor Red
+}
+
 $PowerResponse.Content > $PowerPath
-Write-Host "Powerball CSV written to $PowerPath" -ForegroundColor Green
+Write-Host "POWERBALL CSV WRITTEN TO: $PowerPath" -ForegroundColor Green
 
 $MegaResponse.Content > $MegaPath
-Write-Host "MegaMillions CSV written to $MegaPath" -ForegroundColor Green
+Write-Host "MEGAMILLIONS CSV WRITTEN TO: $MegaPath" -ForegroundColor Green
