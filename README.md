@@ -6,16 +6,26 @@
 
 [Powershell](#powershell)
 
+Fetches Powerball and Megamillions CSV data from the NewYork Gov Website. `https://data.ny.gov/api/views/:id/rows.csv?accessType=DOWNLOAD`
+
+If data is already local, just reads the existing files.
+
+If you pass `new` to the go program it fetches new data.
+
+If you pass `--update` or `-u` to the powershell program it fetches new data.
+
+If you use bash, you will update manually. But it's quite simple :smile:
+
 Example of latest 8
 
 ![new_mega_power_api](https://user-images.githubusercontent.com/9837366/51288802-6a0c0300-19c3-11e9-90c2-75734d4c4b39.PNG)
 
 ## Fair Warning
 
-Since files are being written, I have to write two dotfiles in your:
+Since files are being written, I write two dotfiles in your HOME/USERPROFILE directory:
 
-macOS/Linux: `$HOME`
-Windows: `%USERPROFILE%`
+- macOS/Linux: `$HOME`
+- Windows: `%USERPROFILE%`
 
 To get rid of these harmless files: `rm ~/.mega_power.*` (bash/pwsh) :pray:
 
@@ -32,16 +42,17 @@ go get github.com/selfup/mega_power \
 
 Now globally: `mega_power`
 
+To update the files (new drawing) just pass `new`: `mega_power new` or `go run main.go new` :tada:
+
 ## Development
 
-If you want to work on this make sure you clone this into your `$GOPATH`
+**Go** If you want to work on this make sure you clone this into your `$GOPATH`
 
 Otherwise imports will break :boom:
 
-_building a binary release soon!_
+**Bash/Powershell**
 
-1. It will fetch the data if it's not there.
-1. Once the data is there, it will return the last 8 results of each lottery.
+Just regular git flow, anywhere on the machine should be fine :smile:
 
 ## Bash
 
