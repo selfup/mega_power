@@ -18,11 +18,11 @@ if (($HOMEPATH -eq "") -And ($USERPROFILE -eq "")) {
 }
 
 if ($HOMEPATH -eq "") {
-    Write-Host "FOUND USERPROFILE" -ForegroundColor Black -BackgroundColor White
+    Write-Host "FOUND USERPROFILE" -ForegroundColor White -BackgroundColor Magenta
     $ROOTPATH = $USERPROFILE 
 }
 else {
-    Write-Host "FOUND HOME" -ForegroundColor Blue -BackgroundColor White
+    Write-Host "FOUND HOME" -ForegroundColor White -BackgroundColor Magenta
     $ROOTPATH = $HOMEPATH
 }
 
