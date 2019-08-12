@@ -41,11 +41,12 @@ if (($MegaFileThere) -And ($PowerFileThere)) {
         Write-Host "FILES ALREADY EXIST. PLEASE USE --update TO UPDATE IF NEW DATA IS NEEDED" -ForegroundColor White -BackgroundColor Black
         
         Write-Output "--- OUTPUTTING LAST KNOWN RESULTS BELOW ---"
-        
-        Write-Output "POWER"
-        Write-Output (Get-Content $PowerPath -Head 9)
+        Write-Output ""
         Write-Output "MEGA"
         Write-Output (Get-Content $MegaPath -Head 9)
+        Write-Output ""
+        Write-Output "POWER"
+        Write-Output (Get-Content $PowerPath -Head 9)
         
         Break
     }
@@ -79,7 +80,10 @@ Write-Host "POWERBALL CSV WRITTEN TO: $PowerPath" -ForegroundColor Green -Backgr
 $MegaResponse.Content > $MegaPath
 Write-Host "MEGAMILLIONS CSV WRITTEN TO: $MegaPath" -ForegroundColor Green -BackgroundColor Black
 
-Write-Output "POWER"
-Write-Output (Get-Content $PowerPath -Head 9)
 Write-Output "MEGA"
 Write-Output (Get-Content $MegaPath -Head 9)
+
+Write-Output ""
+
+Write-Output "POWER"
+Write-Output (Get-Content $PowerPath -Head 9)
